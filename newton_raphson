@@ -1,0 +1,53 @@
+/* Utilize o método Newton Raphson, para determinar a raiz real da função
+ * f(x) = 2x³+3x²-2 contida no intervalo de I[0,1], considere X0 = 0.5 e o
+ * erro < 0.001.
+ */
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+float fdex (float x){ //função
+	return 2*pow(x,3)+ 3*pow(x,2)-2;
+}
+
+float dfdex (float x){ //derivada da função
+	return 6*pow(x,2)+(6*x);
+}
+
+float n_raphson (float a, float b, float c){ //equação que expressa o método
+	return a-(b/c); //Xn+1 = Xn-(f(x)/f'(x))
+}
+
+int main() {
+
+	float erro, ERRO = 1, x0, xn, xnd,raiz, aux ;
+	int i = 0,j, num_iteracao;
+
+	 printf("DIGITE O ERRO: \n");
+	    scanf("%f",&erro);
+
+	    printf("DIGITE O VALOR INICIAL\n");
+	    scanf("%f", &x0);
+
+	 while (ERRO > erro){// laço de repetição que chama as funções
+		 xn = fdex(x0);
+		 xnd = dfdex (x0);
+		 raiz = n_raphson (x0, xn, xnd);
+		 aux = x0;
+		 x0 = raiz;
+		 i++;
+
+		 printf("VALOR DE X%d = %f\n",i,raiz);
+
+		 if (i > 1){
+			 ERRO = (aux - raiz);
+			 printf("O VALOR DO ERRO É:%f\n\n", ERRO);
+		 }
+
+	 }
+
+	 printf("O VALOR DA RAIZ É:%f\n", raiz);
+     
+   return 0;
+}
