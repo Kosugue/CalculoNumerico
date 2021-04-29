@@ -47,7 +47,7 @@ int main() {
 
 	 }
 
-	 printf("O VALOR DA RAIZ É:%f\n", raiz);
+	 printf("O VALOR DA RAIZ É:%f\nERRO: %f\nNÚMERO DE ITERAÇÕES: %d", raiz,ERRO,i);
      
    return 0;
 }
